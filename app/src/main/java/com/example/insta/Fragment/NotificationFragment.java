@@ -104,3 +104,5 @@ public class NotificationFragment extends Fragment {
        return view;
     }
 }
+
+//end
