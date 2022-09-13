@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Fragment.NotificationFragment">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -36,10 +37,12 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
+    <com.mikelau.views.shimmer.ShimmerRecyclerView
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/bar" />
+        android:layout_below="@+id/bar"
+        app:shimmer_demo_child_count="10"
+        app:shimmer_demo_layout="@layout/notification_demo"/>
 
 </RelativeLayout>

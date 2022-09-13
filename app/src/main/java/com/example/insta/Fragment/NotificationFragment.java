@@ -19,13 +19,14 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.mikelau.views.shimmer.ShimmerRecyclerView;
 
 import java.util.ArrayList;
 
 
 public class NotificationFragment extends Fragment {
 
-    RecyclerView recycler_view;
+    ShimmerRecyclerView recycler_view;
     ArrayList<NotificationModel> notification_list;
     FirebaseDatabase database;
 
@@ -75,7 +76,7 @@ public class NotificationFragment extends Fragment {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         recycler_view.setLayoutManager(linearLayoutManager);
         recycler_view.setNestedScrollingEnabled(false);
-        recycler_view.setAdapter(notificationAdapter);
+
 
         database.getReference()
                 .child("notification")
@@ -89,6 +90,8 @@ public class NotificationFragment extends Fragment {
                             notificationModel.setNotificationID(dataSnapshot.getKey());
                             notification_list.add(notificationModel);
                         }
+                        recycler_view.setAdapter(notificationAdapter);
+                        recycler_view.hideShimmerAdapter();
                         notificationAdapter.notifyDataSetChanged();
                     }
 

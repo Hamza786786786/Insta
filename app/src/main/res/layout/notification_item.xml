@@ -51,6 +51,7 @@
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_alignParentEnd="true"
-        android:src="@drawable/hamza" />
+        android:src="@drawable/hamza"
+        android:layout_centerVertical="true"/>
 
 </RelativeLayout>

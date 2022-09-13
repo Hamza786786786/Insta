@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/open_notification_demo"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp">
+
+    <View
+        android:id="@+id/image_profile_demo"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@drawable/circle"
+        android:backgroundTint="#eee"/>
+
+
+    <LinearLayout
+        android:id="@+id/notification_text_demo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_toStartOf="@id/post_image_demo"
+        android:layout_toEndOf="@id/image_profile_demo"
+        android:orientation="vertical">
+
+        <View
+            android:id="@+id/user_name_demo"
+            android:layout_width="60dp"
+            android:layout_height="22dp"
+            android:background="#eee" />
+
+        <View
+            android:id="@+id/type_demo"
+            android:layout_width="110dp"
+            android:layout_height="22dp"
+            android:layout_marginTop="4dp"
+            android:background="#eee" />
+
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/post_image_demo"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:background="#eee" />
+
+</RelativeLayout>
