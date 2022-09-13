@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "790413270417",
+    "project_id": "neatroot-37f13",
+    "storage_bucket": "neatroot-37f13.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:790413270417:android:c0cf00c875427528f1ce30",
+        "android_client_info": {
+          "package_name": "com.example.insta"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "790413270417-altm78u7is9e27g8hqhpg920m36cbqdo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBK47dP4Wb4P7G9e5T23coSHYnmJRWL7Yg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "790413270417-altm78u7is9e27g8hqhpg920m36cbqdo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
