@@ -1,5 +1,7 @@
 package com.example.insta.Fragment;
 
+import static android.app.Activity.RESULT_OK;
+
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
@@ -171,7 +173,7 @@ public class AddFragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(data.getData()!=null){
+        if(resultCode == 10 && resultCode == RESULT_OK && data!=null){
             uri = data.getData();
             binding.postAImgPost.setImageURI(uri);
             binding.postAImgPost.setVisibility(View.VISIBLE);
@@ -179,6 +181,9 @@ public class AddFragment extends Fragment {
             binding.postBtnPost.setBackgroundDrawable(ContextCompat.getDrawable(getContext(), R.drawable.follow_btn_bg));
             binding.postBtnPost.setTextColor(getContext().getResources().getColor(R.color.white));
             binding.postBtnPost.setEnabled(true);
+        }
+        else {
+            Toast.makeText(getContext(), "You don't select any image...", Toast.LENGTH_SHORT).show();
         }
     }
 }

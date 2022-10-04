@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.insta.Adapter.PostAdapter;
 import com.example.insta.Adapter.StoryAdapter;
@@ -170,50 +171,57 @@ public class HomeFragment extends Fragment {
         galleryLauncher = registerForActivityResult(new ActivityResultContracts.GetContent(), new ActivityResultCallback<Uri>() {
             @Override
             public void onActivityResult(Uri result) {
-                addStoryImage.setImageURI(result);
+                if (result != null) {
+                    addStoryImage.setImageURI(result);
 
-                dialog.show();
+                    dialog.show();
 
-                final StorageReference reference = storage.getReference()
-                        .child("stories")
-                        .child(FirebaseAuth.getInstance().getUid())
-                        .child(new Date().getTime()+"");
-                reference.putFile(result).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                        reference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                            @Override
-                            public void onSuccess(Uri uri) {
+                    final StorageReference reference = storage.getReference()
+                            .child("stories")
+                            .child(FirebaseAuth.getInstance().getUid())
+                            .child(new Date().getTime() + "");
+                    reference.putFile(result).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            reference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
 
-                                StoryModel storyModel = new StoryModel();
-                                storyModel.setStoryAt(new Date().getTime());
-                                database.getReference()
-                                        .child("stories")
-                                        .child(FirebaseAuth.getInstance().getUid())
-                                        .child("postedBy")
-                                        .setValue(storyModel.getStoryAt()).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                            @Override
-                                            public void onSuccess(Void unused) {
-                                                UsersStories usersStories = new UsersStories(uri.toString(), storyModel.getStoryAt());
+                                    StoryModel storyModel = new StoryModel();
+                                    storyModel.setStoryAt(new Date().getTime());
+                                    database.getReference()
+                                            .child("stories")
+                                            .child(FirebaseAuth.getInstance().getUid())
+                                            .child("postedBy")
+                                            .setValue(storyModel.getStoryAt()).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                @Override
+                                                public void onSuccess(Void unused) {
+                                                    UsersStories usersStories = new UsersStories(uri.toString(), storyModel.getStoryAt());
 
-                                                database.getReference()
-                                                        .child("stories")
-                                                        .child(FirebaseAuth.getInstance().getUid())
-                                                        .child("userStories")
-                                                        .push()
-                                                        .setValue(usersStories).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                                            @Override
-                                                            public void onSuccess(Void unused) {
-                                                                dialog.dismiss();
-                                                            }
-                                                        });
+                                                    database.getReference()
+                                                            .child("stories")
+                                                            .child(FirebaseAuth.getInstance().getUid())
+                                                            .child("userStories")
+                                                            .push()
+                                                            .setValue(usersStories).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                                @Override
+                                                                public void onSuccess(Void unused) {
+                                                                    dialog.dismiss();
+                                                                }
+                                                            });
 
-                                            }
-                                        });
-                            }
-                        });
-                    }
-                });
+                                                }
+                                            });
+                                }
+                            });
+                        }
+                    });
+
+                }
+
+                else {
+                    Toast.makeText(getContext(), "You don't select any story...", Toast.LENGTH_SHORT).show();
+                }
 
             }
         });

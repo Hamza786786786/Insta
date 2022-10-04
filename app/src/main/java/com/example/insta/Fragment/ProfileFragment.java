@@ -1,5 +1,7 @@
 package com.example.insta.Fragment;
 
+import static android.app.Activity.RESULT_OK;
+
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -169,7 +171,7 @@ public class ProfileFragment extends Fragment {
         super.onActivityResult(requestCode, resultCode, data);
 
         if(requestCode == 11){
-            if(data.getData()!=null){
+            if(resultCode == 11 && resultCode == RESULT_OK && data!=null){
                 Uri uri = data.getData();
                 cover_photo.setImageURI(uri);
 
@@ -189,10 +191,15 @@ public class ProfileFragment extends Fragment {
                 });
 
             }
+
+            else {
+                Toast.makeText(getContext(), "You don't select your cover photo...", Toast.LENGTH_LONG).show();
+            }
+
         }
 
         else {
-            if(data.getData()!=null){
+            if(resultCode == 22 && resultCode == RESULT_OK && data!=null){
                 Uri uri = data.getData();
                 profile_imagepro.setImageURI(uri);
 
@@ -212,6 +219,9 @@ public class ProfileFragment extends Fragment {
                 });
 
             }
+
+            Toast.makeText(getContext(), "You don't select your profile image...", Toast.LENGTH_LONG).show();
+
         }
 
 
