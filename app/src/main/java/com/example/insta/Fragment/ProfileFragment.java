@@ -171,7 +171,7 @@ public class ProfileFragment extends Fragment {
         super.onActivityResult(requestCode, resultCode, data);
 
         if(requestCode == 11){
-            if(resultCode == 11 && resultCode == RESULT_OK && data!=null){
+            if(data!=null && resultCode == RESULT_OK){
                 Uri uri = data.getData();
                 cover_photo.setImageURI(uri);
 
@@ -198,8 +198,8 @@ public class ProfileFragment extends Fragment {
 
         }
 
-        else {
-            if(resultCode == 22 && resultCode == RESULT_OK && data!=null){
+        else if (requestCode == 22){
+            if(data!=null && resultCode == RESULT_OK){
                 Uri uri = data.getData();
                 profile_imagepro.setImageURI(uri);
 
@@ -220,9 +220,17 @@ public class ProfileFragment extends Fragment {
 
             }
 
-            Toast.makeText(getContext(), "You don't select your profile image...", Toast.LENGTH_LONG).show();
+            else {
+
+                Toast.makeText(getContext(), "You don't select your profile image...", Toast.LENGTH_LONG).show();
+
+            }
+
+
 
         }
+
+
 
 
 

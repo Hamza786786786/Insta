@@ -173,7 +173,7 @@ public class AddFragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(resultCode == 10 && resultCode == RESULT_OK && data!=null){
+        if(requestCode == 10 && resultCode == RESULT_OK && data!=null){
             uri = data.getData();
             binding.postAImgPost.setImageURI(uri);
             binding.postAImgPost.setVisibility(View.VISIBLE);
