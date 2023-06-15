@@ -3,6 +3,14 @@
     android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+        android:id="@+id/native_ad_container"
+        android:layout_alignParentTop="true"
+        android:layout_margin="5dp"
+        android:orientation="horizontal" />
+
     <ImageView
         android:layout_width="100dp"
         android:layout_height="100dp"
@@ -13,8 +21,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
         android:orientation="vertical"
+        android:layout_below="@id/native_ad_container"
         android:padding="10dp"
         android:id="@+id/linear_layout">
 

@@ -30,6 +30,8 @@ public class StartActivity extends AppCompatActivity {
         register = findViewById(R.id.register_re);
         login = findViewById(R.id.login);
 
+        AppController.loadAdmobNativeAd(this);
+
         linearLayout.animate().alpha(0f).setDuration(10);
 
         TranslateAnimation animation = new TranslateAnimation(0 , 0 , 0 , -1500);
