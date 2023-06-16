@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
@@ -25,9 +26,24 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        if (AppController.enableAdmobOpenAdShow) {
+            MyApplication.AdmobInitialize(MainActivity.this, AppController.AdmobAppId);
+            MyApplication.AdmobOpenAd();
+        }
         i = 1;
 
         AppController.showAdmobBanner(this);
+
+        if ((AppController.EnableAdmobInter && !AppController.admobInterLoaded) || (AppController.EnableApplovinInter && !AppController.applovinInterLoaded)){
+            AppController.interstitialAdLoad(this, AppController.EnableAdmobInter, AppController.EnableApplovinInter);
+        }
+
+        if(AppController.enableAdmobOpenAdShow){
+            if(MyApplication.getAppOpenManagerInstance().isAdAvailable())
+            {
+                MyApplication.getAppOpenManagerInstance().showAdIfAvailable();
+            }
+        }
 
         bottomNavigationView = findViewById(R.id.bottom_navigation);
 
@@ -56,8 +72,12 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 else if (item.getItemId() == R.id.nav_profile && i!=5){
-                    selectorFragment = new ProfileFragment();
-                    i = 5;
+                    AppController.interstitialAdShow(MainActivity.this, () ->{
+                        selectorFragment = new ProfileFragment();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container , selectorFragment).commit();
+                        i = 5;
+                    }, AppController.EnableAdmobInter, AppController.EnableApplovinInter);
+
                 }
 
                 if (selectorFragment != null){

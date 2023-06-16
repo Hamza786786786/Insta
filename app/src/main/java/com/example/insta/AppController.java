@@ -37,7 +37,7 @@ public class AppController {
 
 
 
-    public static boolean enableAdmobOpenAdShow = false;
+    public static boolean enableAdmobOpenAdShow = true;
     public static String AdmobOpenAdId = "ca-app-pub-3940256099942544/3419835294";
     public static boolean enableGotoServerActivityInter = true;
     public static boolean enableStartAppBanner = false;
@@ -81,7 +81,7 @@ public class AppController {
     public static boolean EnableDownloadActivityBanner = false;
     public static boolean EnableWhatsappActivityBanner = false;
     public static boolean EnableWebInter = false;
-    public static boolean EnableAdmobInter = false;
+    public static boolean EnableAdmobInter = true;
     public static boolean EnableApplovinInter = true;
     public static boolean EnableSplashInter = false;
     public static long WebInterCount = 2;
@@ -107,7 +107,7 @@ public class AppController {
 
 
     public static void showAdmobBanner(Activity activity) {
-        VDApp.AdmobInitialize(activity, AppController.AdmobAppId);
+        MyApplication.AdmobInitialize(activity, AppController.AdmobAppId);
         final AdView adView = new AdView(activity);
         adView.setAdUnitId(AppController.AdmobBannerMobid);
         adView.setAdSize(AdSize.BANNER);

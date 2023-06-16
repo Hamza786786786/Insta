@@ -66,4 +66,9 @@ dependencies {
 
 
     implementation 'com.github.mike14u:shimmer-recyclerview-x:1.0.0'
+
+    def lifecycle_version = "2.0.0"
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-runtime:$lifecycle_version"
+    annotationProcessor "androidx.lifecycle:lifecycle-compiler:$lifecycle_version"
 }
